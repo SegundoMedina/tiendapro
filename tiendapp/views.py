@@ -12,3 +12,7 @@ def v_cart(request):
         "items": [None, None, None, None]
     }
     return render(request, "tiendapp/cart.html", context)
+
+def v_product_detail(request):
+    context = {}
+    return render(request, "tiendapp/product_detail.html", context)

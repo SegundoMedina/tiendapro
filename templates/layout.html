@@ -8,13 +8,26 @@
 
 <body>
     <div class="container-fluid">
-        <nav>
-            MENU
+        <nav class="navbar navbar-expand bg-dark">
+            <div class="container-fluid">
+                <a href="/" class="navbar-brand text-white">TiendaPro</a>
+            </div>
         </nav>
+        <main style="height: 75vh!important">
         {% block content %}
         {% endblock %}
-        <footer>
-            PIE PAGINA
+        </main>
+        <footer class="bg-secondary text-body-secondary">
+            <div class="d-flex p-4">
+                <div class="w-100">
+                    <h4>TiendaPro</h4>
+                    <p>Descripcion</p>
+                </div>
+                <div class="w-100">
+                    <h4>Ubicanos</h4>
+                    <p>Av. Siempre viva 232323</p>
+                </div>
+            </div>
         </footer>
     </div>
 </body>
