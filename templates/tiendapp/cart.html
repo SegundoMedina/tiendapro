@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div>
+    {% for it in items %}
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="d-flex">
+                <div class="w-100">
+                    <div class="d-flex">
+                        <img src="https://picsum.photos/100">
+                        <div>
+                            <h3>Item</h3>
+                            <p>Descripcion</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="">
+                    <a class="btn btn-danger">Eliminar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

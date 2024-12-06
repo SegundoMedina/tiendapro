@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="d-flex flex-wrap row-cols-4">
+    {% for pr in products %}
+    <div class="col p-2">
+        <div class="card">
+            <img src="https://picsum.photos/200">
+            <div class="card-body">
+                <h2 class="card-title">Producto 1</h2>
+                <div class="card-text">Lorem Ipsum ...</div>
+                <a class="btn btn-primary">Añadir al carrito</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
