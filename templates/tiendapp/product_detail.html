@@ -1,8 +1,5 @@
 {% extends 'layout.html' %}
 {% block content %}
-<style>
-    .d-flex .w-100 img {width: 100%;}
-</style>
 <div class="d-flex">
     <div class="w-100 ">
         <img src="{{ product.image.url }}">
@@ -12,14 +9,24 @@
         <p>
             {{ product.description }}
         </p>
-        <a class="btn btn-primary">Anadir a carrito</a>
+        <a href="/add_to_cart/{{ product.sku }}"
+        class="btn btn-primary">Anadir a carrito</a>
     </div>
 </div>
-<div class="d-flex mt-4 pt-4">
+<div class="d-flex flex-column mt-4 pt-4">
     <h4>Ver tambien:</h4>
-    <div class="d-flex">
+    <div class="d-flex flex-wrap row-cols-4">
         {% for extra in extras %}
-        <div>extra</div>
+        <div class="col p-2">
+            <div class="card">
+                <a href="/product/{{ extra.sku }}">
+                    <img src="{{ extra.thumbnail.url }}" alt="">
+                </a>
+                <div class="card-body">
+                    <h3>{{ extra.name }}</h3>
+                </div>
+            </div>
+        </div>
         {% endfor %}
     </div>
 </div>
