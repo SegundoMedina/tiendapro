@@ -40,6 +40,19 @@ class Customer(models.Model):
     def __str__(self):
         return self.user.username + " Telefono: " + self.phone
     
+    def get_current_order(self):
+        # Verifica si cliente self, tiene una orden
+        nueva_order = Order.objects.filter(customer = self).first()
+        # Si nueva_order NO es None, lo retornamos
+        if nueva_order is None:
+            # Si nueva_order is None, lo creamos
+            nueva_order = Order()
+            nueva_order.customer = self
+            nueva_order.shipping_address = self.shipping_address
+            nueva_order.status = "PENDIENTE"
+            nueva_order.save()
+        return nueva_order
+    
 class Order(models.Model):
     # CUSTOMER tiene muchas ORDERS
     customer = models.ForeignKey(Customer, on_delete=models.PROTECT)
