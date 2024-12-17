@@ -42,7 +42,9 @@ class Customer(models.Model):
     
     def get_current_order(self):
         # Verifica si cliente self, tiene una orden
-        nueva_order = Order.objects.filter(customer = self).first()
+        nueva_order = Order.objects.filter(
+            customer = self, 
+            status = "PENDIENTE").first()
         # Si nueva_order NO es None, lo retornamos
         if nueva_order is None:
             # Si nueva_order is None, lo creamos

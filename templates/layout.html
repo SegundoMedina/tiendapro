@@ -15,6 +15,7 @@
                 <link rel="stylesheet" href="{% static 'styles.css' %}"/>
                 <!--Menu de Navegacion-->
                 <ul class="nav">
+                    {% if not user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link active" href="/">Home</a>
                     </li>
@@ -30,14 +31,27 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/admin">administration</a>
                     </li>
+                    {% else %}
                     <li class="nav-item">
-                        <a class="nav-link disabled" href="#">Disabled</a>
+                        <a class="nav-link" href="/sign_out">Sing Out</a>
                     </li>
+                    {% endif %}
                 </ul>
                 <!--Fin de Menu-->
             </div>
         </nav>
         <main>
+            {% if messages %}
+            <div class="">
+                {% for messages in messages %}
+                    {% if 'error' in message.tags %}
+                    <div class="alert alert-danger">{{ message }}</div>
+                    {% elif 'success' in message.tags %}
+                    <div class="alert alert-success">{{ message }}</div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            {% endif %}
         {% block content %}
         {% endblock %}
         </main>
