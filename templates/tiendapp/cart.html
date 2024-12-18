@@ -7,15 +7,15 @@
             <div class="d-flex">
                 <div class="w-100">
                     <div class="d-flex">
-                        <img src="https://picsum.photos/100">
-                        <div>
-                            <h3>Item</h3>
-                            <p>Descripcion</p>
+                        <img src="{{ it.product.thumbnail.url }}" class="w-25">
+                        <div class="w-75">
+                            <h3>{{ it.product.name }}</h3>
+                            <p>{{ it.product.description }}</p>
                         </div>
                     </div>
                 </div>
                 <div class="">
-                    <a class="btn btn-danger">Eliminar</a>
+                    <a href="remove_from_cart/{{ it.product.sku }}" class="btn btn-danger">Eliminar</a>
                 </div>
             </div>
         </div>

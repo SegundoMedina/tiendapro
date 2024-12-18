@@ -74,4 +74,4 @@ class OrderDetail(models.Model):
     quantity = models.DecimalField(decimal_places=2, max_digits=6) #9999.12
     
     def __str__(self):
-        return self.order.id + " " + self.product.name
+        return str(self.order.id) + " " + self.product.name
