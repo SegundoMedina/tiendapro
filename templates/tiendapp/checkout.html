@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="d-flex flex-row">
+    <div class="w-100 pe-4">
+        <div class="card">
+            <div class="card-header">
+                <h5>Detalle de la orden</h5>
+            </div>
+            <table class="table table-bordered table-striped">
+                <tbody>
+
+                    {% for it in items %}
+                    <tr>
+                        <td>{{ it.product.name }}</td>
+                        <td>{{ it.price }}</td>
+                    </tr>
+
+                    {% endfor %}
+                    <tr>
+                        <td>
+                            <strong>Total</strong>
+                        </td>
+                        <td>
+
+                            {{ total_order }}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="w-100 ps-4">
+        <div class="card">
+            <div class="card-header">
+                <h5>Detalle del cliente</h5>
+            </div>
+            <div class="card-body">
+                <p><strong>Nombres: {{ user.first_name }}</strong></p>
+                <p><strong>Apellidos: {{ user.last_name }}</strong></p>
+                <p><strong>Direccion Fact. {{ customer.billing_address }}</strong></p>
+                <p><strong>Direccion Envio. {{ customer.shipping_address }}</strong></p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="text-end mt-4">
+    <a href="/checkout_end" class="btn btn-danger">Pagar y enviar</a>
+</div>
+
+{% endblock %}
+ 

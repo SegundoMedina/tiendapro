@@ -82,3 +82,16 @@ def v_remove_from_cart(request, code):
     if item_cart is not None:
         item_cart.delete()
     return redirect("/cart")
+
+def v_checkout(request):
+    customer_obj = Customer.objects.get(user = request.user)
+    order_current = customer_obj.get_current_order()
+    # order_current tipo: Order
+    details = OrderDetail.objects.filter(order = order_current)
+    # order_current tipo: OrderDetail
+    context = {
+        "items": details,
+        "total_order": 121212,
+        "customer": customer_obj,
+    }
+    return render(request, "tiendapp/checkout.html", context)
