@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import v_index, v_cart, v_product_detail, v_add_to_cart
-from .views import v_remove_from_cart, v_checkout
+from .views import v_remove_from_cart, v_checkout, v_checkout_end
 from .auth_views import v_sign_up, v_sign_up_create, v_sign_in, v_sign_out
 
 urlpatterns = [
@@ -14,4 +14,5 @@ urlpatterns = [
     path("sign_in", v_sign_in, name="sign_in"),
     path("sign_out", v_sign_out, name="v_sign_out"),
     path("checkout", v_checkout, name="checkout"),
+    path("checkout_end", v_checkout_end, name="checkout_end"),
 ]

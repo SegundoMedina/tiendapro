@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render
 from tiendapp.models import Customer, Product, ProductCategory
 from tiendapp.models import OrderDetail, Order
+from django.contrib import messages
 
 # Create your views here.
 def v_index(request):
@@ -89,9 +90,29 @@ def v_checkout(request):
     # order_current tipo: Order
     details = OrderDetail.objects.filter(order = order_current)
     # order_current tipo: OrderDetail
+    # details => QuerySet => Lista
+
+    total = 0 #=> entero
+    # item => OrderDetail
+    for item in details:
+        subtotal = item.price * item.quantity
+        total = total + subtotal
+
     context = {
         "items": details,
-        "total_order": 121212,
+        "total_order": total,
         "customer": customer_obj,
     }
     return render(request, "tiendapp/checkout.html", context)
+
+def v_checkout_end(request):
+    if request.method == "POST":
+        customer_obj = Customer.objects.get(user = request.user)
+        current_order = customer_obj.get_current_order()
+        data = request.POST.copy()
+        current_order.shipping_address = data["shipping_address"]
+        current_order.status = "PAGADO"
+        current_order.save()
+        messages.success(request, "la orden se ha procesado correctamente.")
+        # redirecciona a la url /
+    return redirect("/")

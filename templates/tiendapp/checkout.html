@@ -39,13 +39,21 @@
                 <p><strong>Nombres: {{ user.first_name }}</strong></p>
                 <p><strong>Apellidos: {{ user.last_name }}</strong></p>
                 <p><strong>Direccion Fact. {{ customer.billing_address }}</strong></p>
-                <p><strong>Direccion Envio. {{ customer.shipping_address }}</strong></p>
+                <p><strong>Direccion Envio.</strong>
+                    <textarea 
+                    class="form-control"
+                    name="shipping_address"
+                    form="endForm">{{ customer.shipping_address }}</textarea>
+                </p>
             </div>
         </div>
     </div>
 </div>
 <div class="text-end mt-4">
-    <a href="/checkout_end" class="btn btn-danger">Pagar y enviar</a>
+    <form id="endForm" action="/checkout_end" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Pagar y enviar</button>
+    </form>
 </div>
 
 {% endblock %}
